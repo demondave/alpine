@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Installing GLX"
+apk update & apk upgrade
+apk add libva-glx mesa-gl mesa-dri-gallium mesa-demos
+echo "GLX installation complete"
