@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "Starting installation!"
 apk add bspwm setxkbmap sxhkd font-fira-code feh rxvt-unicode
 
