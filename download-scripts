@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "Downloading additional scripts."
+mkdir ~/scripts
+curl https://raw.githubusercontent.com/demondave/alpine/main/scripts/setup-glx > ~/scripts/setup-glx
+chmod +x ~/scripts/setup-glx
