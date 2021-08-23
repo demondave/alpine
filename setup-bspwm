@@ -1,2 +1,58 @@
-echo BSPWM setup script.
-apk add bspwm
+echo "Starting installation!"
+apk add bspwm setxkbmap sxhkd font-fira-code feh rxvt-unicode
+
+# Making directories
+mkdir ~/.config
+mkdir ~/.config/bspwm
+mkdir ~/.config/sxhkd
+
+# Downloading configuration files
+curl https://raw.githubusercontent.com/demondave/scripts/main/config/sxhkdrc > ~/.config/sxhkd/sxhkdrc
+curl https://raw.githubusercontent.com/demondave/scripts/main/config/bspwmrc > ~/.config/bspwm/bspwmrc
+
+# Setting up Xorg keyboard layout
+echo "Set Xorg keyboard layout: "
+read kb
+echo "setxkbmap -layout $kb"
+
+# Picom installation
+echo "Do you want to install picom? (y/n):"
+read a
+if [$a == "y"]
+then
+apk add picom
+curl https://raw.githubusercontent.com/demondave/scripts/main/config/_picom.conf > ~/.config/picom/picom.conf
+echo "picom --experimental-backends -b" >> ~/.config/bspwm/bspwmrc
+fi
+
+# Polybar installation
+echo "Do you want to install polybar? (y/n):"
+read a
+if [$a == "y"]
+then
+apk add polybar
+mkdir ~/.config/polybar
+curl https://raw.githubusercontent.com/demondave/scripts/main/config/launch.sh > ~/.config/polybar/launch.sh
+chmod +x ~/.config/polybar/launch.sh
+curl https://raw.githubusercontent.com/demondave/scripts/main/config/config > ~/.config/polybar/config
+echo "bash ~/.config/polybar/launch.sh" >> ~/.config/bspwm/bspwmrc
+fi
+
+
+# Wallpaper download
+echo "Do you want to download some wallpapers? (y/n):"
+read a
+if [$a == "y"]
+then
+rm ~/.config/bspwm/wallpaper.jpg
+curl -L https://raw.githubusercontent.com/demondave/scripts/main/assets/wallpaper.jpg?raw=true > ~/.config/bspwm/wallpaper.jpg
+rm ~/.config/bspwm/wallpaper-1.jpg
+curl -L https://raw.githubusercontent.com/demondave/scripts/main/assets/wallpaper-1.jpg?raw=true > ~/.config/bspwm/wallpaper-1.jpg
+rm ~/.config/bspwm/wallpaper-2.jpg
+curl -L https://raw.githubusercontent.com/demondave/scripts/main/assets/wallpaper-2.jpg?raw=true > ~/.config/bspwm/wallpaper-2.jpg
+rm ~/.config/bspwm/wallpaper-3.jpg
+curl -L https://raw.githubusercontent.com/demondave/scripts/main/assets/wallpaper-3.jpg?raw=true > ~/.config/bspwm/wallpaper-3.jpg
+rm ~/.config/bspwm/wallpaper-4.jpg
+curl -L https://raw.githubusercontent.com/demondave/scripts/main/assets/wallpaper-4.jpg?raw=true > ~/.config/bspwm/wallpaper-4.jpg
+fi
+
