@@ -1,0 +1,2 @@
+echo BSPWM setup script.
+apk add bspwm
